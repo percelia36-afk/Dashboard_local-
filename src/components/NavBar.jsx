@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// ...existing code...
+
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const paths = [
   { name: "Stats", href: "/stats" },
-  { name: "Stream Manager", href: "/stream-manager" },
-  { name: "Video Content Manager", href: "/video-content-manager" },
 ];
 
   const pathname = usePathname();
@@ -34,7 +33,15 @@ const paths = [
           );
         })}
       </ul>
-      {/* Auth UI removed */}
+      <div className="p-4 mt-auto flex flex-col gap-2">
+        <SignedOut>
+          <SignInButton />
+          <SignUpButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </div>
     </nav>
   );
 }
